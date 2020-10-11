@@ -1,18 +1,30 @@
 const express = require("express");
-const db = require("./Models");
 const app = express();
 const path = require("path");
 const port = process.env.PORT || 8080;
 const bodyParser = require("body-parser");
-
-const indexRout = require("./Routes/index");
+const mongoose = require("mongoose");
 const methodOverride = require("method-override");
 
 // admin router
+const indexRout = require("./Routes/index");
 const adminRout = require("./Routes/admin");
-const test = require("./Controllers/controller-admin");
 
-// // Setup Views Enginer EJS
+require("dotenv").config();
+
+mongoose.connect(process.env.DATABASE_URL, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+});
+
+const db = mongoose.connection;
+db.on("error", (error) => console.error(error));
+db.once("open", () => {
+  console.log("successfully ↔️  connected to 🌱 MongoDB Server");
+  console.log("");
+});
+
+// Setup Views Enginer EJS
 // app.set("views", "./Views");
 app.set("views", path.join(__dirname, "Views")); // Apa perbedaan line 11 dengan line 10 ?
 app.set("view engine", "ejs");
@@ -37,24 +49,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(methodOverride("_method"));
 app.use("/", indexRout);
 app.use("/admin", adminRout);
-
-db.sequelize
-  // .sync().then(() => {
-  //   console.log("");
-  //   console.log(`\x1b[91mSuccesfully Sync Database\x1b[91m`);
-  //   console.log("\x1b[93m\x1b[39m");
-  //   console.log("");
-  // });
-  .sync({
-    force: true,
-  })
-  .then(() => {
-    console.log("");
-    console.log(`\x1b[91mSuccesfully 🔥 Drop And ♻️  Resync Database\x1b[91m`);
-    console.log("");
-    console.log("\x1b[93mby https://github.com/sanengineer\x1b[39m");
-    console.log("\x1b[93mLet's \x1b[39m");
-  });
 
 // Listen Port
 app.listen(port, () => {

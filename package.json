@@ -15,6 +15,7 @@
   "author": "https://sanengineer.com",
   "license": "ISC",
   "devDependencies": {
+    "dotenv": "^8.2.0",
     "nodemon": "^2.0.4"
   },
   "bugs": {

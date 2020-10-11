@@ -16,7 +16,9 @@ function checkFieldsPost(req, res, next) {
     next();
   } else {
     // res.status(400);
-    res.status(400).json({ message: "Form field not can't be empty" });
+    res
+      .status(400)
+      .json({ message: "User Game Form field not can't be empty" });
   }
 }
 
@@ -27,7 +29,9 @@ function checkFieldsPostUserGameBiodata(req, res, next) {
     next();
   } else {
     // res.status(400);
-    res.status(400).json({ message: "Form field not can't be empty" });
+    res
+      .status(400)
+      .json({ message: "User Game Biodata Form field not can't be empty" });
   }
 }
 
@@ -38,7 +42,9 @@ function checkFieldsPostUserGameHistory(req, res, next) {
     next();
   } else {
     // res.status(400);
-    res.status(400).json({ message: "Form field not can't be empty" });
+    res
+      .status(400)
+      .json({ message: "User Game History Form field not can't be empty" });
   }
 }
 

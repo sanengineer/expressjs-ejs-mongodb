@@ -1,10 +1,13 @@
+// Routes For Admin Dashboard Like ejs, hbs and etc
+//
+
 const express = require("express");
 const router = express.Router();
 const middleware = require("../Helpers/middlewares");
 const controllerAdmin = require("../Controllers/controller-admin");
 
-router.get("/dashboard", controllerAdmin.viewDashboard);
-router.get("/signin", controllerAdmin.viewSignin);
+// router.get("/dashboard", controllerAdmin.viewDashboard);
+// router.get("/signin", controllerAdmin.viewSignin);
 // router.get("/dashboard", controllerAdmin.renderAllUserGame);
 
 // endpoint user game
@@ -19,13 +22,13 @@ router.get(
   middleware.mustBeInteger,
   controllerAdmin.getOneUserGame
 );
-router.put("/user-game/:id", controllerAdmin.updateUserGame);
-router.delete(
-  "/user-game/:id",
-  middleware.mustBeInteger,
-  controllerAdmin.deleteOneUserGame
-);
-router.delete("/user-game/", controllerAdmin.deleteAllUserGame);
+// router.put("/user-game/:id", controllerAdmin.updateUserGame);
+// router.delete(
+//   "/user-game/:id",
+//   middleware.mustBeInteger,
+//   controllerAdmin.deleteOneUserGame
+// );
+// router.delete("/user-game/", controllerAdmin.deleteAllUserGame);
 
 // endpoint user game history
 router.post(
@@ -39,13 +42,13 @@ router.get(
   middleware.mustBeInteger,
   controllerAdmin.getOneUserGameHistory
 );
-router.put("/user-game-history/:id", controllerAdmin.updateUserGameHistory);
-router.delete(
-  "/user-game-history/:id",
-  middleware.mustBeInteger,
-  controllerAdmin.deleteOneUserGameHistory
-);
-router.delete("/user-game-history/", controllerAdmin.deleteAllUserGameHistory);
+// router.put("/user-game-history/:id", controllerAdmin.updateUserGameHistory);
+// router.delete(
+//   "/user-game-history/:id",
+//   middleware.mustBeInteger,
+//   controllerAdmin.deleteOneUserGameHistory
+// );
+// router.delete("/user-game-history/", controllerAdmin.deleteAllUserGameHistory);
 
 // endpoint user game biodata
 router.post(
@@ -59,11 +62,11 @@ router.get(
   middleware.mustBeInteger,
   controllerAdmin.getOneUserGameBiodata
 );
-router.put("/user-game-biodata/:id", controllerAdmin.updateUserGameBiodata);
-router.delete(
-  "/user-game-biodata/:id",
-  controllerAdmin.deleteOneUserGameBiodata
-);
-router.delete("/user-game-biodata/", controllerAdmin.deleteAllUserGameBiodata);
+// router.put("/user-game-biodata/:id", controllerAdmin.updateUserGameBiodata);
+// router.delete(
+//   "/user-game-biodata/:id",
+//   controllerAdmin.deleteOneUserGameBiodata
+// );
+// router.delete("/user-game-biodata/", controllerAdmin.deleteAllUserGameBiodata);
 
 module.exports = router;
