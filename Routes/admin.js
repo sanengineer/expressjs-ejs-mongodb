@@ -17,17 +17,9 @@ router.post(
   controllerAdmin.createUserGame
 );
 router.get("/user-game", controllerAdmin.getAllUserGame);
-router.get(
-  "/user-game/:id",
-  middlewares.mustBeInteger,
-  controllerAdmin.getOneUserGame
-);
+router.get("/user-game/:id", controllerAdmin.getOneUserGame);
 router.put("/user-game/:id", controllerAdmin.updateUserGame);
-router.delete(
-  "/user-game/:id",
-  middlewares.mustBeInteger,
-  controllerAdmin.deleteOneUserGame
-);
+router.delete("/user-game/:id", controllerAdmin.deleteOneUserGame);
 router.delete("/user-game/", controllerAdmin.deleteAllUserGame);
 
 // endpoint user game biodata
@@ -37,11 +29,7 @@ router.post(
   controllerAdmin.createUserGameBiodata
 );
 router.get("/user-game-biodata", controllerAdmin.getAllUserGameBiodata);
-router.get(
-  "/user-game-biodata/:id",
-  middlewares.mustBeInteger,
-  controllerAdmin.getOneUserGameBiodata
-);
+router.get("/user-game-biodata/:id", controllerAdmin.getOneUserGameBiodata);
 router.put("/user-game-biodata/:id", controllerAdmin.updateUserGameBiodata);
 router.delete(
   "/user-game-biodata/:id",
@@ -56,11 +44,7 @@ router.post(
   controllerAdmin.createUserGameHistory
 );
 router.get("/user-game-history", controllerAdmin.getAllUserGameHIstory);
-router.get(
-  "/user-game-history/:id",
-  middlewares.mustBeInteger,
-  controllerAdmin.getOneUserGameHistory
-);
+router.get("/user-game-history/:id", controllerAdmin.getOneUserGameHistory);
 router.put(
   "/user-game-history/:id",
   middlewares.checkFieldsPostUserGameHistory,
