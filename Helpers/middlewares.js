@@ -1,14 +1,3 @@
-function mustBeInteger(req, res, next) {
-  const id = req.params.id;
-
-  if (!Number.isInteger(parseInt(id))) {
-    // res.status(400);
-    res.status(400).json({ message: "Check id, Integer Please!" });
-  } else {
-    next();
-  }
-}
-
 function checkFieldsPost(req, res, next) {
   const { username, email, password } = req.body;
 
@@ -49,7 +38,6 @@ function checkFieldsPostUserGameHistory(req, res, next) {
 }
 
 module.exports = {
-  mustBeInteger,
   checkFieldsPost,
   checkFieldsPostUserGameBiodata,
   checkFieldsPostUserGameHistory,
