@@ -4,40 +4,40 @@ const UserGameHistory = require("../Models/user/user-game-history");
 
 module.exports = {
   // render view dashboard
-  // viewDashboard: async (req, res) => {
-  //   try {
-  //     const usergame = await UserGame.find();
-  //     const userbiodata = await UserGameBiodata.find();
-  //     const userhistory = await UserGameHistory.find();
-  //     res.render("admin/dashboard", {
-  //       usergame,
-  //       userbiodata,
-  //       userhistory,
-  //     });
-  //   } catch (error) {
-  //     res.redirect("/admin/dashboard");
-  //   }
-  // },
+  viewDashboard: async (req, res) => {
+    try {
+      const usergame = await UserGame.find();
+      const userbiodata = await UserGameBiodata.find();
+      const userhistory = await UserGameHistory.find();
+      res.render("admin/dashboard", {
+        usergame,
+        userbiodata,
+        userhistory,
+      });
+    } catch (error) {
+      res.redirect("/admin/dashboard");
+    }
+  },
 
   // render view sign in
-  // viewSignin: (req, res) => {
-  //   res.render("index");
-  // },
+  viewSignin: (req, res) => {
+    res.render("index");
+  },
 
   // render user list on dashboard
-  // renderAllUserGame: (req, res) => {
-  //   UserGame.find()
-  //     .then((usergame) => {
-  //       res.render("admin/dashboard", {
-  //         usergame,
-  //       });
-  //     })
-  //     .catch((err) => {
-  //       res.status(500).send({
-  //         message: err.message || "something error to get all user",
-  //       });
-  //     });
-  // },
+  renderAllUserGame: (req, res) => {
+    UserGame.find()
+      .then((usergame) => {
+        res.render("admin/dashboard", {
+          usergame,
+        });
+      })
+      .catch((err) => {
+        res.status(500).send({
+          message: err.message || "something error to get all user",
+        });
+      });
+  },
 
   // create and save a new user game
   createUserGame: (req, res) => {
@@ -52,8 +52,8 @@ module.exports = {
 
     UserGame.create(user)
       .then((data) => {
-        res.send(data);
-        // res.redirect("dashboard");
+        // res.send(data);
+        res.redirect("dashboard");
       })
       .catch((err) => {
         res.status(500).send({
@@ -99,95 +99,76 @@ module.exports = {
   // User Game
   //
   // update user by id
-  // updateUserGame: (req, res) => {
-  //   const { id } = req.params;
+  updateUserGame: (req, res) => {
+    const { id } = req.params;
 
-  //   UserGame.update(req.body, {
-  //     where: { user_id: id },
-  //   })
-  //     .then((num) => {
-  //       if (num == 1) {
-  //         // res.send({
-  //         //   message: `user with id=${id}was upadated successfully`,
-  //         // });
-  //         res.redirect("/admin/dashboard");
-  //       } else {
-  //         res.send({
-  //           message: `can't update user with id=${id} maybe req.body is mty`,
-  //         });
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       res.status(500).send({
-  //         message: `error updating user with id=${id}`,
-  //       });
-  //     });
-  // },
+    const updateOneUserGame = {
+      username: req.body.username,
+      password: req.body.password,
+      email: req.body.email,
+    };
+
+    UserGame.findByIdAndUpdate(id, updateOneUserGame, (error, result) => {
+      if (error) {
+        res.send({
+          message:
+            error ||
+            `can't update user game biodata with id=${id} maybe req.body is mty`,
+        });
+      } else {
+        // res.send({
+        //   message: `user game biodata with id=${id}was upadated successfully`,
+        // });
+        res.redirect("/admin/dashboard");
+      }
+    });
+  },
 
   // delete user by id
-  // deleteOneUserGame: (req, res) => {
-  //   const { id } = req.params;
+  deleteOneUserGame: (req, res) => {
+    const { id } = req.params;
 
-  //   UserGame.destroy({ where: { user_id: id } })
-  //     .then((num) => {
-  //       if (num == 1) {
-  //         // res.send({
-  //         //   message: `user by id=${id} was deleted successfully`,
-  //         // });
-  //         res.redirect("/admin/dashboard");
-  //       } else {
-  //         res.send({
-  //           message: `can't delete user with id=${id}`,
-  //         });
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       res.status(500).send({
-  //         message: "(respon500) can't delete user with id=" + id,
-  //       });
-  //     });
-  // },
+    const removeOneUserGame = {
+      username: req.body.username,
+      email: req.body.email,
+      password: req.body.password,
+    };
+
+    UserGame.findByIdAndRemove(id, removeOneUserGame, (error, result) => {
+      if (error) {
+        res.send({
+          message:
+            error ||
+            `can't update user game biodata with id=${id} maybe req.body is mty`,
+        });
+      } else {
+        // res.send({
+        //   message: `user game biodata with id=${id}was deleted successfully`,
+        // });
+        res.redirect("/admin/dashboard");
+      }
+    });
+  },
 
   // delete all user
-  // deleteAllUserGame: (req, res) => {
-  //   UserGame.destroy({
-  //     where: {},
-  //     truncate: false, // apa itu truncate??
-  //   })
-  //     .then((nums) => {
-  //       res.send({
-  //         message: `${nums} Users was delete successfully`,
-  //       });
-  //     })
-  //     .catch((err) => {
-  //       res.status(500).send({
-  //         message: err.message || "Delete all failed",
-  //       });
-  //     });
-  // },
+  deleteAllUserGame: (req, res) => {
+    UserGame.deleteMany()
+      .then((_id) => {
+        res.send({
+          message: `${_id} Users was delete successfully`,
+        });
+      })
+      .catch((err) => {
+        res.status(500).send({
+          message: err.message || "Delete all failed",
+        });
+      });
+  },
 
   // User Game Biodata
   //
   // create and save a new user game history
   createUserGameBiodata: (req, res) => {
-    // create user
-
-    // const { fullname, sex, jobs, user_id } = req.body;
-
-    // const usergame = await UserGame.findOne({ _id: user_id });
-
-    // const newUsergamebiodata = {
-    //   fullname,
-    //   sex,
-    //   jobs,
-    //   user_id,
-    // };
-
-    // console.log(usergamebiodata);
-    // console.log(usergame);
-
-    // const usergamebiodata = await UserGameBiodata.create(newUsergamebiodata);
-
     const usergamebiodata = {
       fullname: req.body.fullname,
       sex: req.body.sex,
@@ -199,8 +180,8 @@ module.exports = {
 
     UserGameBiodata.create(usergamebiodata)
       .then((data) => {
-        res.send(data);
-        // res.redirect("dashboard");
+        // res.send(data);
+        res.redirect("dashboard");
       })
       .catch((err) => {
         res.status(500).send({
@@ -267,74 +248,60 @@ module.exports = {
               `can't update user game biodata with id=${updateOneUserBiodata} maybe req.body is mty`,
           });
         } else {
-          res.send({
-            message: `user game biodata with id=${id}was upadated successfully`,
-          });
+          // res.send({
+          //   message: `user game biodata with id=${id}was upadated successfully`,
+          // });
+          res.redirect("/admin/dashboard");
         }
       }
     );
-    // .then((_id) => {
-    //   if (_id == _id) {
-    //     res.send({
-    //       message: `user game biodata with id=${id}was upadated successfully`,
-    //     });
-    //     res.redirect("/admin/dashboard");
-    //   } else {
-    //     res.send({
-    //       message: `can't update user game biodata with id=${id} maybe req.body is mty`,
-    //     });
-    //   }
-    // })
-    // .catch((err) => {
-    //   res.status(500).send({
-    //     message: `error updating user game biodata with id=${id}`,
-    //   });
-    // });
   },
 
   // delete user game history by id
-  // deleteOneUserGameBiodata: (req, res) => {
-  //   const { id } = req.params;
+  deleteOneUserGameBiodata: (req, res) => {
+    const { id } = req.params;
 
-  //   UserGameBiodata.destroy({ where: { user_game_biodata_id: id } })
-  //     .then((num) => {
-  //       if (num == 1) {
-  //         // res.send({
-  //         //   message: `user game biodata by id=${id} was deleted successfully`,
-  //         // });
-  //         res.redirect("/admin/dashboard");
-  //       } else {
-  //         res.send({
-  //           message: `can't delete user game biodata with id=${id}`,
-  //         });
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       res.status(500).send({
-  //         message:
-  //           err.message ||
-  //           "respon(500) can't delete user game biodata with id=" + id,
-  //       });
-  //     });
-  // },
+    const removeOneUserBiodata = {
+      fullname: req.body.fullname,
+      sex: req.body.sex,
+      jobs: req.body.jobs,
+      user_id: req.body.user_id,
+    };
+
+    UserGameBiodata.findByIdAndRemove(
+      id,
+      removeOneUserBiodata,
+      (error, result) => {
+        if (error) {
+          res.send({
+            message:
+              error ||
+              `can't update user game biodata with id=${removeOneUserBiodata} maybe req.body is mty`,
+          });
+        } else {
+          // res.send({
+          //   message: `user game biodata with id=${id}was deleted successfully`,
+          // });
+          res.redirect("/admin/dashboard");
+        }
+      }
+    );
+  },
 
   // delete all user game history
-  // deleteAllUserGameBiodata: (req, res) => {
-  //   UserGameBiodata.destroy({
-  //     where: {},
-  //     truncate: false, // apa itu truncate??
-  //   })
-  //     .then((nums) => {
-  //       res.send({
-  //         message: `${nums} user game biodata was delete successfully`,
-  //       });
-  //     })
-  //     .catch((err) => {
-  //       res.status(500).send({
-  //         message: err.message || "Delete all failed",
-  //       });
-  //     });
-  // },
+  deleteAllUserGameBiodata: (req, res) => {
+    UserGameBiodata.deleteMany()
+      .then((_id) => {
+        res.send({
+          message: `${_id} user game biodata was delete successfully`,
+        });
+      })
+      .catch((err) => {
+        res.status(500).send({
+          message: err.message || "Delete all failed",
+        });
+      });
+  },
 
   // User Game History
   //
@@ -349,8 +316,8 @@ module.exports = {
 
     UserGameHistory.create(usergamehistory)
       .then((data) => {
-        res.send(data);
-        // res.redirect("dashboard");
+        // res.send(data);
+        res.redirect("dashboard");
       })
       .catch((err) => {
         res.status(500).send({
@@ -397,68 +364,76 @@ module.exports = {
 
   // update user game history by id
   updateUserGameHistory: (req, res) => {
-    const { id, score, comment } = req.params;
+    const { id } = req.params;
 
-    UserGameHistory.findOne({ _id: id })
-      .then((num) => {
-        if (num == 1) {
+    const updateOneUserHistory = {
+      score: req.body.score,
+      comment: req.body.comment,
+      user_id: req.body.user_id,
+    };
+
+    UserGameHistory.findByIdAndUpdate(
+      id,
+      updateOneUserHistory,
+      (error, result) => {
+        if (error) {
+          res.send({
+            message:
+              error ||
+              `can't update user game biodata with id=${updateOneUserHistory} maybe req.body is mty`,
+          });
+        } else {
           // res.send({
-          //   message: `user with id=${id}was upadated successfully`,
+          //   message: `user game biodata with id=${id}was upadated successfully`,
           // });
           res.redirect("/admin/dashboard");
-        } else {
-          res.send({
-            message: `can't update user with id=${id} maybe req.body is mty`,
-          });
         }
-      })
-      .catch((err) => {
-        res.status(500).send({
-          message: `error updating user with id=${id}`,
-        });
-      });
+      }
+    );
   },
 
   // delete user game history by id
-  // deleteOneUserGameHistory: (req, res) => {
-  //   const { id } = req.params;
+  deleteOneUserGameHistory: (req, res) => {
+    const { id } = req.params;
 
-  //   UserGameHistory.destroy({ where: { user_game_history_id: id } })
-  //     .then((num) => {
-  //       if (num == 1) {
-  //         // res.send({
-  //         //   message: `user game history by id=${id} was deleted successfully`,
-  //         // });
-  //         res.redirect("/admin/dashboard");
-  //       } else {
-  //         res.send({
-  //           message: `can't delete user game history with id=${id}`,
-  //         });
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       res.status(500).send({
-  //         message:
-  //           err.message || "can't delete user game history with id=" + id,
-  //       });
-  //     });
-  // },
+    const removeOneUserHistory = {
+      score: req.body.score,
+      comment: req.body.comment,
+      user_id: req.body.user_id,
+    };
+
+    UserGameHistory.findByIdAndDelete(
+      id,
+      removeOneUserHistory,
+      (error, result) => {
+        if (error) {
+          res.send({
+            message:
+              error ||
+              `can't update user game biodata with id=${removeOneUserHistory} maybe req.body is mty`,
+          });
+        } else {
+          // res.send({
+          //   message: `user game biodata with id=${id}was deleted successfully`,
+          // });
+          res.redirect("/admin/dashboard");
+        }
+      }
+    );
+  },
 
   // delete all user game history
-  // deleteAllUserGameHistory: (req, res) => {
-  //   UserGameHistory.destroy({
-  //     where: {},
-  //     truncate: false, // apa itu truncate??
-  //   })
-  //     .then((nums) => {
-  //       res.send({
-  //         message: `${nums} user game history was delete successfully`,
-  //       });
-  //     })
-  //     .catch((err) => {
-  //       res.status(500).send({
-  //         message: err.message || "Delete all failed",
-  //       });
-  //     });
-  // },
+  deleteAllUserGameHistory: (req, res) => {
+    UserGameHistory.deleteMany()
+      .then((user_game_histories) => {
+        res.send({
+          message: `${user_game_histories} user game history was delete successfully`,
+        });
+      })
+      .catch((err) => {
+        res.status(500).send({
+          message: err.message || "Delete all failed",
+        });
+      });
+  },
 };
