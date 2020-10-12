@@ -48,6 +48,8 @@ module.exports = {
       password: req.body.password,
     };
 
+    // console.log(user);
+
     UserGame.create(user)
       .then((data) => {
         res.send(data);
@@ -169,12 +171,31 @@ module.exports = {
   // create and save a new user game history
   createUserGameBiodata: (req, res) => {
     // create user
+
+    // const { fullname, sex, jobs, user_id } = req.body;
+
+    // const usergame = await UserGame.findOne({ _id: user_id });
+
+    // const newUsergamebiodata = {
+    //   fullname,
+    //   sex,
+    //   jobs,
+    //   user_id,
+    // };
+
+    // console.log(usergamebiodata);
+    // console.log(usergame);
+
+    // const usergamebiodata = await UserGameBiodata.create(newUsergamebiodata);
+
     const usergamebiodata = {
       fullname: req.body.fullname,
       sex: req.body.sex,
       jobs: req.body.jobs,
-      // user_id: req.body.user_id,
+      user_id: req.body.user_id,
     };
+
+    console.log(usergamebiodata);
 
     UserGameBiodata.create(usergamebiodata)
       .then((data) => {
