@@ -88,6 +88,7 @@ module.exports = {
     UserGame.find() // find is function bawaan Mongoose
       .then((data) => {
         res.send(data);
+        console.log(data);
       })
       .catch((err) => {
         res.status(500).send({
@@ -217,6 +218,19 @@ module.exports = {
     UserGameBiodata.find() // find is function bawaan Mongoose
       .then((data) => {
         res.send(data);
+      })
+      .then(() => {
+        const showUserBiodataRelation = async () => {
+          const UserBiodata = await UserGameBiodata.find()
+            .populate("user_id", "-_id -__v")
+            .select("-__v");
+
+          console.log(
+            "User Biodata With Reference detail:\n",
+            `\x1b[93m${UserBiodata}\x1b[39m\n`
+          );
+        };
+        return showUserBiodataRelation();
       })
       .catch((err) => {
         res.status(500).send({
@@ -354,6 +368,19 @@ module.exports = {
       .then((data) => {
         res.send(data);
       })
+      .then(() => {
+        const showUserHistoryRelation = async () => {
+          const UserHistory = await UserGameHistory.find()
+            .populate("user_id", "-_id -__v")
+            .select("-__v");
+
+          console.log(
+            "User Biodata With Reference detail:\n",
+            `\x1b[93m${serHistory}\x1b[39m\n`
+          );
+        };
+        return showUserHistoryRelation();
+      })
       .catch((err) => {
         res.status(500).send({
           message:
@@ -435,5 +462,19 @@ module.exports = {
           message: err.message || "Delete all failed",
         });
       });
+  },
+
+  // popolute collection
+
+  function() {
+    const showUserBiodataRelation = async () => {
+      const UserBiodata = await userBiodata
+        .find()
+        .populate("user_id", "-_id -__v")
+        .select("-__v");
+
+      console.log("User Biodata With Reference detail:\n", UserBiodata);
+    };
+    return showUserBiodataRelation();
   },
 };

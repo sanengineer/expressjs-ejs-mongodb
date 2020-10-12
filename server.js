@@ -21,7 +21,7 @@ const db = mongoose.connection;
 db.on("error", (error) => console.error(error));
 db.once("open", () => {
   console.log("successfully ↔️  connected to 🌱 MongoDB Server");
-  console.log("");
+  console.log("\x1b[93mdebugging procces 👇🏼 :\x1b[39m\n");
 });
 
 // Setup Views Enginer EJS
