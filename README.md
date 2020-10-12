@@ -14,6 +14,8 @@ This project use [ExpressJS 🚀](https://expressjs.com) ([NodeJS](https://nodej
 
 ### CRUD Method
 
+- For **GET All data** for table `user_game_biodata` and` user_game_history` with showed on terminal (shell) json
+
 ### 2 RestAPI endpoint, for admin dashboard and Frontend
 
 ![Flow Chart Backend ReSTAPI EJS end Front-End](https://res.cloudinary.com/dsv9w1ey3/image/upload/v1602142703/github-images/Flow_Chart_Admin_Dashboard_Challenge_Chapter_6_dc01be.png)

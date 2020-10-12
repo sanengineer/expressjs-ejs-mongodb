@@ -375,8 +375,8 @@ module.exports = {
             .select("-__v");
 
           console.log(
-            "User Biodata With Reference detail:\n",
-            `\x1b[93m${serHistory}\x1b[39m\n`
+            "User History With Reference detail:\n",
+            `\x1b[93m${UserHistory}\x1b[39m\n`
           );
         };
         return showUserHistoryRelation();
