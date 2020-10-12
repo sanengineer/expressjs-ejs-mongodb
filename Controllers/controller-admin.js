@@ -64,9 +64,9 @@ module.exports = {
 
   // get one user by id
   getOneUserGame: (req, res) => {
-    const id = req.params.id;
+    const { id } = req.params;
 
-    UserGame.findOne(id)
+    UserGame.findOne({ _id: id })
       .then((data) => {
         if (data == data) {
           res.status(200).send(data);
