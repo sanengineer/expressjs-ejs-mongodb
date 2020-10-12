@@ -21,7 +21,7 @@ module.exports = {
 
   // render view sign in
   viewSignin: (req, res) => {
-    res.render("index");
+    res.render("admin/index");
   },
 
   // render user list on dashboard
