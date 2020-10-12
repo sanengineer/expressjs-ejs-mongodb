@@ -246,30 +246,51 @@ module.exports = {
   },
 
   // update user game history by id
-  // updateUserGameBiodata: (req, res) => {
-  //   const { id } = req.params;
+  updateUserGameBiodata: (req, res) => {
+    const { id } = req.params;
 
-  //   UserGameBiodata.update(req.body, {
-  //     where: { user_game_biodata_id: id },
-  //   })
-  //     .then((num) => {
-  //       if (num == 1) {
-  //         // res.send({
-  //         //   message: `user game biodata with id=${id}was upadated successfully`,
-  //         // });
-  //         res.redirect("/admin/dashboard");
-  //       } else {
-  //         res.send({
-  //           message: `can't update user game biodata with id=${id} maybe req.body is mty`,
-  //         });
-  //       }
-  //     })
-  //     .catch((err) => {
-  //       res.status(500).send({
-  //         message: `error updating user game biodata with id=${id}`,
-  //       });
-  //     });
-  // },
+    const updateOneUserBiodata = {
+      fullname: req.body.fullname,
+      sex: req.body.sex,
+      jobs: req.body.jobs,
+      user_id: req.body.user_id,
+    };
+
+    UserGameBiodata.findByIdAndUpdate(
+      id,
+      updateOneUserBiodata,
+      (error, result) => {
+        if (error) {
+          res.send({
+            message:
+              error ||
+              `can't update user game biodata with id=${updateOneUserBiodata} maybe req.body is mty`,
+          });
+        } else {
+          res.send({
+            message: `user game biodata with id=${id}was upadated successfully`,
+          });
+        }
+      }
+    );
+    // .then((_id) => {
+    //   if (_id == _id) {
+    //     res.send({
+    //       message: `user game biodata with id=${id}was upadated successfully`,
+    //     });
+    //     res.redirect("/admin/dashboard");
+    //   } else {
+    //     res.send({
+    //       message: `can't update user game biodata with id=${id} maybe req.body is mty`,
+    //     });
+    //   }
+    // })
+    // .catch((err) => {
+    //   res.status(500).send({
+    //     message: `error updating user game biodata with id=${id}`,
+    //   });
+    // });
+  },
 
   // delete user game history by id
   // deleteOneUserGameBiodata: (req, res) => {
@@ -323,7 +344,7 @@ module.exports = {
     const usergamehistory = {
       score: req.body.score,
       comment: req.body.comment,
-      // user_id: req.body.user_id,
+      user_id: req.body.user_id,
     };
 
     UserGameHistory.create(usergamehistory)

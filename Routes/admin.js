@@ -42,7 +42,7 @@ router.get(
   middleware.mustBeInteger,
   controllerAdmin.getOneUserGameHistory
 );
-// router.put("/user-game-history/:id", controllerAdmin.updateUserGameHistory);
+router.put("/user-game-history/:id", controllerAdmin.updateUserGameHistory);
 // router.delete(
 //   "/user-game-history/:id",
 //   middleware.mustBeInteger,
@@ -62,7 +62,7 @@ router.get(
   middleware.mustBeInteger,
   controllerAdmin.getOneUserGameBiodata
 );
-// router.put("/user-game-biodata/:id", controllerAdmin.updateUserGameBiodata);
+router.put("/user-game-biodata/:id", controllerAdmin.updateUserGameBiodata);
 // router.delete(
 //   "/user-game-biodata/:id",
 //   controllerAdmin.deleteOneUserGameBiodata
