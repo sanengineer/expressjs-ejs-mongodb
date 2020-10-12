@@ -4,13 +4,13 @@ This project use [ExpressJS 🚀](https://expressjs.com) ([NodeJS](https://nodej
 
 ## ER Diagram For 🌱 MongoDB
 
-![Entity Diagram MongoDB](https://res.cloudinary.com/dsv9w1ey3/image/upload/v1602142037/github-images/Challange_Ch_6_Entity_Diagram_tbaovc.png)
+![Entity Diagram MongoDB](https://res.cloudinary.com/dsv9w1ey3/image/upload/v1602518877/github-images/Challange_Ch_6_Entity_Diagram_z7jldc.png)
 
 ## Feature
 
 ### Dashboard View
 
-![Dashboard View With EJS](https://res.cloudinary.com/dsv9w1ey3/image/upload/v1602350572/github-images/dashboard-admin-ejs_jncagc.png)
+![Dashboard View With EJS](https://res.cloudinary.com/dsv9w1ey3/image/upload/v1602516872/github-images/dashboard-admin-expressjs-mongodb-ejs_ayox7l.png)
 
 ### CRUD Method
 

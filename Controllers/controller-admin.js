@@ -85,7 +85,7 @@ module.exports = {
 
   // get all user
   getAllUserGame: (req, res) => {
-    UserGame.find() // find is function bawaan sequelize
+    UserGame.find() // find is function bawaan Mongoose
       .then((data) => {
         res.send(data);
       })
@@ -214,7 +214,7 @@ module.exports = {
 
   // get all user
   getAllUserGameBiodata: (req, res) => {
-    UserGameBiodata.find() // find is function bawaan sequelize
+    UserGameBiodata.find() // find is function bawaan Mongoose
       .then((data) => {
         res.send(data);
       })
@@ -350,7 +350,7 @@ module.exports = {
 
   // get all user
   getAllUserGameHIstory: (req, res) => {
-    UserGameHistory.find() // find is function bawaan sequelize
+    UserGameHistory.find() // find is function bawaan Mongoose
       .then((data) => {
         res.send(data);
       })
