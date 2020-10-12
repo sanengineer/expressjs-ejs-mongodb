@@ -29,14 +29,14 @@
           <tbody>
             <% for( let i = 0; i < userbiodata.length; i++ ) { %>
             <tr>
-              <td><%= userbiodata[i].user_game_biodata_id %></td>
+              <td><%= userbiodata[i]._id %></td>
               <td><%= userbiodata[i].fullname %></td>
               <td><%= userbiodata[i].sex %></td>
               <td><%= userbiodata[i].jobs %></td>
               <td><%= userbiodata[i].user_id %></td>
               <td>
                 <form
-                  action="/admin/user-game-biodata/<%= userbiodata[i].user_game_biodata_id %>?_method=DELETE"
+                  action="/admin/user-game-biodata/<%= userbiodata[i]._id %>?_method=DELETE"
                   method="POST"
                 >
                   <a
@@ -92,9 +92,10 @@
       <div class="modal-body">
         <% for( let i = 0; i < userbiodata.length; i++ ) { %>
         <form
-          action="/admin/user-game-biodata/<%= userbiodata[i].user_game_biodata_id %>?_method=PUT"
+          action="/admin/user-game-biodata/<%= userbiodata[i]._id %>?_method=PUT"
           method="POST"
         >
+          <% } %>
           <div class="form-group">
             <label for="forUserGameId">User Id</label>
             <input
@@ -143,7 +144,6 @@
             Update
           </button>
         </form>
-        <% } %>
       </div>
     </div>
   </div>

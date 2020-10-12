@@ -27,13 +27,13 @@
           <tbody>
             <% for( let i = 0; i < usergame.length; i++ ) { %>
             <tr>
-              <td><%= usergame[i].user_id %></td>
+              <td><%= usergame[i]._id %></td>
               <td><%= usergame[i].username %></td>
               <td><%= usergame[i].email %></td>
               <td><%= usergame[i].password %></td>
               <td>
                 <form
-                  action="/admin/user-game/<%= usergame[i].user_id %>?_method=DELETE"
+                  action="/admin/user-game/<%= usergame[i]._id %>?_method=DELETE"
                   method="POST"
                 >
                   <button
@@ -88,9 +88,10 @@
       <div class="modal-body">
         <% for( let i = 0; i < usergame.length; i++ ) { %>
         <form
-          action="/admin/user-game/<%= usergame[i].user_id %>?_method=PUT"
+          action="/admin/user-game/<%= usergame[i]._id %>?_method=PUT"
           method="POST"
         >
+          <% } %>
           <div class="form-group">
             <label for="forUsername">Username</label>
             <input
@@ -131,7 +132,6 @@
             Update
           </button>
         </form>
-        <% } %>
       </div>
     </div>
   </div>
