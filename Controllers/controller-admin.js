@@ -118,7 +118,7 @@ module.exports = {
         });
       } else {
         // res.send({
-        //   message: `user game biodata with id=${id}was upadated successfully`,
+        //   message: `user game biodata with id=${id} was upadated successfully`,
         // });
         res.redirect("/admin/dashboard");
       }
@@ -144,7 +144,7 @@ module.exports = {
         });
       } else {
         // res.send({
-        //   message: `user game biodata with id=${id}was deleted successfully`,
+        //   message: `user game biodata with id=${id} was deleted successfully`,
         // });
         res.redirect("/admin/dashboard");
       }
@@ -271,7 +271,7 @@ module.exports = {
           });
         } else {
           // res.send({
-          //   message: `user game biodata with id=${id}was upadated successfully`,
+          //   message: `user game biodata with id=${id} was upadated successfully`,
           // });
           res.redirect("/admin/dashboard");
         }
@@ -302,7 +302,7 @@ module.exports = {
           });
         } else {
           // res.send({
-          //   message: `user game biodata with id=${id}was deleted successfully`,
+          //   message: `user game biodata with id=${id} was deleted successfully`,
           // });
           res.redirect("/admin/dashboard");
         }
@@ -427,7 +427,7 @@ module.exports = {
           });
         } else {
           // res.send({
-          //   message: `user game biodata with id=${id}was upadated successfully`,
+          //   message: `user game biodata with id=${id} was upadated successfully`,
           // });
           res.redirect("/admin/dashboard");
         }
@@ -457,7 +457,7 @@ module.exports = {
           });
         } else {
           // res.send({
-          //   message: `user game biodata with id=${id}was deleted successfully`,
+          //   message: `user game biodata with id=${id} was deleted successfully`,
           // });
           res.redirect("/admin/dashboard");
         }
