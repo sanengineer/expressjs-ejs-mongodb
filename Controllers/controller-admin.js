@@ -154,11 +154,19 @@ module.exports = {
   // delete all user
   deleteAllUserGame: (req, res) => {
     UserGame.deleteMany()
-      .then((_id) => {
-        res.send({
-          message: `${_id} Users was delete successfully`,
-        });
-      })
+      .then(
+        UserGame.count({}, (err, result) => {
+          if (err) {
+            res.send({
+              message: err || "something get error",
+            });
+          } else {
+            res.send({
+              message: `${result} user game data was deleted successfully`,
+            });
+          }
+        })
+      )
       .catch((err) => {
         res.status(500).send({
           message: err.message || "Delete all failed",
@@ -305,11 +313,19 @@ module.exports = {
   // delete all user game history
   deleteAllUserGameBiodata: (req, res) => {
     UserGameBiodata.deleteMany()
-      .then((_id) => {
-        res.send({
-          message: `${_id} user game biodata was delete successfully`,
-        });
-      })
+      .then(
+        UserGameBiodata.count({}, (err, result) => {
+          if (err) {
+            res.send({
+              message: err || "something get error",
+            });
+          } else {
+            res.send({
+              message: `${result} user game biodata data was deleted successfully`,
+            });
+          }
+        })
+      )
       .catch((err) => {
         res.status(500).send({
           message: err.message || "Delete all failed",
@@ -452,29 +468,23 @@ module.exports = {
   // delete all user game history
   deleteAllUserGameHistory: (req, res) => {
     UserGameHistory.deleteMany()
-      .then((user_game_histories) => {
-        res.send({
-          message: `${user_game_histories} user game history was delete successfully`,
-        });
-      })
+      .then(
+        UserGameHistory.count({}, (err, result) => {
+          if (err) {
+            res.send({
+              message: err || "something get error",
+            });
+          } else {
+            res.send({
+              message: `${result} user game history data was deleted successfully`,
+            });
+          }
+        })
+      )
       .catch((err) => {
         res.status(500).send({
           message: err.message || "Delete all failed",
         });
       });
-  },
-
-  // popolute collection
-
-  function() {
-    const showUserBiodataRelation = async () => {
-      const UserBiodata = await userBiodata
-        .find()
-        .populate("user_id", "-_id -__v")
-        .select("-__v");
-
-      console.log("User Biodata With Reference detail:\n", UserBiodata);
-    };
-    return showUserBiodataRelation();
   },
 };
