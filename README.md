@@ -20,16 +20,34 @@ This project use [ExpressJS 🚀](https://expressjs.com) ([NodeJS](https://nodej
 
 ![Flow Chart Backend ReSTAPI EJS end Front-End](https://res.cloudinary.com/dsv9w1ey3/image/upload/v1602142703/github-images/Flow_Chart_Admin_Dashboard_Challenge_Chapter_6_dc01be.png)
 
-## Get Started
+## ⚙️ Prequisite
+
+- Node Version 12.18.4 LTS (Recomended)
+- MongoDB
+
+## List Package Node Modules On Production
+
+- Body Parser
+- EJS
+- Express
+- Method Override
+- Mongoose
+
+## List Package Node Moduels On Development
+
+- Dotenv
+- Nodemon
+
+### Getting Started On Development
+
+        $ cd expressjs-ejs-mongodb
 
         $ npm install
 
-## Development
+        $ touch .env
 
-Use Node Version 12.18.4 LTS (Recomended)
+Configuring .env file, example:
 
-### Run Server On Dev Mode:
-
-        $ cd
+`DATABASE_URL="mongodb://localhost:27017"`
 
         $ npm run dev
